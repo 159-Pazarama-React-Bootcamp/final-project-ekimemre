@@ -1,0 +1,9 @@
+.container {
+  background: #92a9bd;
+  width: 30%;
+  height: 75%;
+  margin-left: 50%;
+}
+.container label {
+  display: block;
+}
