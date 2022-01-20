@@ -7,7 +7,6 @@ import {
 } from 'react-router-dom'
 import AdminPage from './pages/AdminLogin'
 import LandingPage from './pages/LandingPage'
-// import NotFound from './pages/NotFound'
 import TicketInfo from './pages/TicketInfo'
 
 function App() {

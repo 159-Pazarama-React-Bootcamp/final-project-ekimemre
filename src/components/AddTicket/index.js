@@ -1,22 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './styles.module.css'
 import { useFormik } from 'formik'
 import validationSchema from '../../utils/validations'
 import { db } from '../../firebase'
-import { collection, getDocs, addDoc } from 'firebase/firestore'
+import { collection, addDoc } from 'firebase/firestore'
+import { useDispatch } from 'react-redux'
+import { setTicketID, setSuccess } from '../../redux/ticket/searchTicketSlice'
 
 const Landing = () => {
   const ticketsCollectionRef = collection(db, 'tickets')
   const navigate = useNavigate()
+  const [basvuruNo, setBasvuruNo] = useState('')
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const getUsers = async () => {
-      const data = await getDocs(ticketsCollectionRef)
-      console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    if (basvuruNo) {
+      dispatch(setTicketID(basvuruNo))
+      dispatch(setSuccess(true))
+      navigate(`/basvuru/${basvuruNo}`)
     }
-    getUsers() //Debug islemleri icin sakla
-  }, [])
+  }, [basvuruNo])
 
   const formik = useFormik({
     initialValues: {
@@ -40,10 +44,13 @@ const Landing = () => {
         info: values.info,
         address: values.address,
         createdAt: createdTime,
-      }).then(function (docRef) {
-        console.log('Doc ID: ', docRef.id)
-        navigate(`basvuru/${docRef.id}`)
       })
+        .then(function (docRef) {
+          console.log('Doc ID: ', docRef.id)
+          setBasvuruNo(docRef.id)
+        })
+        .catch((err) => console.log(err))
+      console.log('basvuruno', basvuruNo)
     },
     validationSchema,
   })
