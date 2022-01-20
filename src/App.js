@@ -23,3 +23,10 @@ function App() {
 }
 
 export default App
+
+{
+  /* <Route path="/*" element={<Navigate replace to="/basvuru" />} />
+<Route path="/basvuru" element={<LandingPage />} />
+<Route exact path="/basvuru/:basvuruNo" element={<TicketInfo />} />
+<Route exact path="/admin" element={<AdminPage />} /> */
+}

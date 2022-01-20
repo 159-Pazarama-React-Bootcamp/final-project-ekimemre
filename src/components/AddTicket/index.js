@@ -8,7 +8,16 @@ import { collection, addDoc } from 'firebase/firestore'
 import { useDispatch } from 'react-redux'
 import { setTicketID, setSuccess } from '../../redux/ticket/searchTicketSlice'
 
-const Landing = () => {
+const initialValues = {
+  firstName: '',
+  lastName: '',
+  age: 0,
+  tc: '',
+  info: '',
+  address: '',
+}
+
+const AddTicket = () => {
   const ticketsCollectionRef = collection(db, 'tickets')
   const navigate = useNavigate()
   const [basvuruNo, setBasvuruNo] = useState('')
@@ -22,94 +31,103 @@ const Landing = () => {
     }
   }, [basvuruNo])
 
+  const onSubmit = async (values) => {
+    const createdTime = new Date().toLocaleString('tr-TR', {
+      timeZone: 'UTC',
+    })
+    await addDoc(ticketsCollectionRef, {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      age: values.age,
+      tc: values.tc,
+      info: values.info,
+      address: values.address,
+      createdAt: createdTime,
+      isCompleted: false,
+      answerContent: '',
+    })
+      .then((docRef) => {
+        setBasvuruNo(docRef.id)
+      })
+      .catch((err) => console.log(err))
+  }
+
   const formik = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      age: 0,
-      tc: '',
-      info: '',
-      address: '',
-      createdOn: '',
-    },
-    onSubmit: async (values) => {
-      const createdTime = new Date().toLocaleString('tr-TR', {
-        timeZone: 'UTC',
-      })
-      await addDoc(ticketsCollectionRef, {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        age: values.age,
-        tc: values.tc,
-        info: values.info,
-        address: values.address,
-        createdAt: createdTime,
-      })
-        .then(function (docRef) {
-          console.log('Doc ID: ', docRef.id)
-          setBasvuruNo(docRef.id)
-        })
-        .catch((err) => console.log(err))
-      console.log('basvuruno', basvuruNo)
-    },
+    initialValues,
+    onSubmit,
     validationSchema,
   })
 
   return (
     <form className={styles.container} onSubmit={formik.handleSubmit}>
-      <label htmlFor="firstName">Adınız:</label>
-      <input
-        id="firstName"
-        name="firstName"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.firstName}
-      />
+      <h1 className={styles.title}>Başvuru Oluştur</h1>
+      <div className={styles.inputBox}>
+        <input
+          id="firstName"
+          name="firstName"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.firstName}
+          placeholder="Ad"
+        />
+      </div>
 
-      <label htmlFor="lastName">Soy adınız:</label>
-      <input
-        id="lastName"
-        name="lastName"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.lastName}
-      />
+      <div className={styles.inputBox}>
+        <input
+          id="lastName"
+          name="lastName"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.lastName}
+          placeholder="Soyad"
+        />
+      </div>
 
-      <label htmlFor="age">Yaşınız:</label>
-      <input
-        id="age"
-        name="age"
-        type="number"
-        onChange={formik.handleChange}
-        value={formik.values.age}
-      />
+      <div className={styles.inputBox}>
+        <input
+          id="age"
+          name="age"
+          type="number"
+          onChange={formik.handleChange}
+          value={formik.values.age}
+          placeholder="Yaş"
+        />
+      </div>
 
-      <label htmlFor="tc">T.C Kimlik Numaranız:</label>
-      <input
-        id="tc"
-        name="tc"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.tc}
-      />
+      <div className={styles.inputBox}>
+        <input
+          id="tc"
+          name="tc"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.tc}
+          placeholder="T.C Kimlik No"
+        />
+      </div>
 
-      <label htmlFor="info">Başvuru Nedeniniz:</label>
-      <input
-        id="info"
-        name="info"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.info}
-      />
+      <div className={styles.inputBox}>
+        <input
+          id="address"
+          name="address"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.address}
+          placeholder="Adres Bilgileri"
+        />
+      </div>
 
-      <label htmlFor="address">Adres Bilgileriniz:</label>
-      <input
-        id="address"
-        name="address"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.address}
-      />
+      <div className={styles.inputBox}>
+        <textarea
+          cols="30"
+          rows="5"
+          id="info"
+          name="info"
+          type="text"
+          onChange={formik.handleChange}
+          value={formik.values.info}
+          placeholder="Başvuru Nedeni"
+        />
+      </div>
 
       {/* <input
         id="file"
@@ -122,11 +140,12 @@ const Landing = () => {
         }}
       /> */}
 
-      <button type="submit">Submit</button>
-
-      <code>{JSON.stringify(formik.values)}</code>
+      <button type="submit" className={styles.button}>
+        Ekle
+      </button>
+      {/* <code>{JSON.stringify(formik.values)}</code> */}
     </form>
   )
 }
 
-export default Landing
+export default AddTicket

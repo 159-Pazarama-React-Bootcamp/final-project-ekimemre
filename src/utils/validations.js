@@ -5,7 +5,7 @@ const ticketFormSchema = Yup.object({
   lastName: Yup.string().required(),
   age: Yup.number().min(18),
   tc: Yup.string().min(11).max(11).required(),
-  info: Yup.string().required(),
+  info: Yup.string().max(250).required(),
   address: Yup.string().required(),
   file: Yup.mixed(),
   createdAt: Yup.string(),

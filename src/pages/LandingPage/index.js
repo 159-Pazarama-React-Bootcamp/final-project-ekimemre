@@ -6,8 +6,10 @@ import SearchTicket from '../../components/SearchTicket'
 const LandingPage = () => {
   return (
     <div className={styles.container}>
-      <SearchTicket />
-      <AddTicket />
+      <div className={styles.form}>
+        <AddTicket />
+        <SearchTicket />
+      </div>
     </div>
   )
 }

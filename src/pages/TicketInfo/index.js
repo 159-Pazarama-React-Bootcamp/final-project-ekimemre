@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
+import styles from './styles.module.css'
 import { useParams } from 'react-router-dom'
+import TicketItem from '../../components/TicketItem'
 import NotFound from '../NotFound'
 import { useSelector, useDispatch } from 'react-redux'
 import { db } from '../../firebase'
@@ -20,26 +22,32 @@ const index = () => {
   }, [])
 
   const ticketValue = useSelector((state) => state.tickets.item)
-  const searchValue = useSelector((state) => state.search.success)
+  const addSuccess = useSelector((state) => state.search.success)
   const isThereAny = ticketValue.some((item) => item.id === basvuruNo)
   return (
-    <div>
-      {searchValue && <h1>Başarıyla kaydedilmiştir.</h1>}
+    <>
+      {addSuccess && <h1>Başarıyla kaydedilmiştir.</h1>}
       {isThereAny &&
         ticketValue
           .filter((ticket) => ticket.id === basvuruNo)
           .map((ticket, i) => {
             return (
-              <div key={i}>
-                <p>{ticket.firstName}</p>
-                <p>{ticket.lastName}</p>
-                <p>{ticket.info}</p>
-                <p>{ticket.address}</p>
+              <div className={styles.container} key={i}>
+                <TicketItem
+                  id={ticket.id}
+                  firstName={ticket.firstName}
+                  lastName={ticket.lastName}
+                  age={ticket.age}
+                  tc={ticket.tc}
+                  isCompleted={ticket.isCompleted}
+                  answerContent={ticket.answerContent}
+                  createdAt={ticket.createdAt}
+                />
               </div>
             )
           })}
       {!isThereAny && <NotFound />}
-    </div>
+    </>
   )
 }
 

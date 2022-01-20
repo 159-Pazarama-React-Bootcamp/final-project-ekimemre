@@ -1,0 +1,37 @@
+.container {
+  width: 40%;
+  height: 70%;
+  border-radius: 15px;
+  background: #d6e6f2;
+  font-family: 'Outfit', sans-serif;
+}
+
+.header {
+  background-color: #fff;
+  height: 15%;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
+  font-size: 18px;
+  font-weight: 500;
+  border: 1px solid;
+}
+
+.item {
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.answer {
+  margin-left: 40px;
+  margin-top: 10px;
+  font-size: 26;
+  font-weight: 700;
+}

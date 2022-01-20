@@ -1,7 +1,9 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap');
 @import './assets/reset.css';
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+.App {
+  max-width: 1920px;
+  height: 100vh;
+  margin: 0 auto;
+  font-family: 'Outfit', sans-serif;
 }
