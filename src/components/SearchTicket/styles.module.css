@@ -1,8 +1,19 @@
+@media screen and (max-width: 20rem) and (max-width: 64rem) {
+  .container {
+    width: 100%;
+    margin-left: 1%;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .container {
+    width: 35%;
+    margin-left: 15%;
+  }
+}
+
 .container {
-  background: #3f72af;
-  width: 35%;
   height: 100%;
-  margin-left: 15%;
   border-radius: 15px;
 }
 
@@ -11,10 +22,9 @@
   font-family: 'JetBrains Mono', monospace;
   font-size: 22px;
   color: #fff;
-  /* font-family: 'Outfit', sans-serif; */
   font-style: italic;
   font-weight: 700;
-  margin-top: 60%;
+  margin-top: 10%;
   margin-left: 10%;
 }
 

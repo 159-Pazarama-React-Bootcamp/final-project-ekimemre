@@ -1,32 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { useParams } from 'react-router-dom'
 import TicketItem from '../../components/TicketItem'
 import NotFound from '../NotFound'
+import AddSuccess from '../../components/AddSuccess'
 import { useSelector, useDispatch } from 'react-redux'
-import { db } from '../../firebase'
-import { collection, getDocs } from 'firebase/firestore'
-import { addTicket } from '../../redux/ticket/ticketListSlice'
+import { getTickets } from '../../redux/ticket/ticketListSlice'
 
 const index = () => {
+  const [successAlert, setSuccessAlert] = useState(
+    useSelector((state) => state.search.success)
+  )
   const { basvuruNo } = useParams()
   const dispatch = useDispatch()
-  const ticketsCollectionRef = collection(db, 'tickets')
 
   useEffect(() => {
-    const getTickets = async () => {
-      const data = await getDocs(ticketsCollectionRef)
-      data.docs.map((doc) => dispatch(addTicket({ ...doc.data(), id: doc.id })))
-    }
-    getTickets()
+    dispatch(getTickets())
   }, [])
 
+  if (successAlert === true) {
+    setTimeout(() => {
+      setSuccessAlert(false)
+    }, 3000)
+  }
+
   const ticketValue = useSelector((state) => state.tickets.item)
-  const addSuccess = useSelector((state) => state.search.success)
   const isThereAny = ticketValue.some((item) => item.id === basvuruNo)
+
   return (
     <>
-      {addSuccess && <h1>Başarıyla kaydedilmiştir.</h1>}
+      {successAlert && <AddSuccess />}
       {isThereAny &&
         ticketValue
           .filter((ticket) => ticket.id === basvuruNo)

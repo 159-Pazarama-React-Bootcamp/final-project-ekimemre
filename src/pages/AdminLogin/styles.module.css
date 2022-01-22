@@ -1,0 +1,59 @@
+.container {
+  display: flex;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.loginBox {
+  width: 35%;
+  margin-top: 5%;
+  padding-top: 5%;
+  height: 27rem;
+  border-radius: 10px;
+  box-shadow: 4px 5px 1px 1px #4e57ef;
+  background-color: #eeeeee;
+  align-items: center;
+}
+
+.inputBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputBox input {
+  margin-top: 25px;
+  font-size: 16px;
+  border-radius: 5px;
+  line-height: 1.5;
+  padding: 5px 10px;
+  border: 2px solid #dee1e2;
+  background: #dee1e2;
+  display: block;
+  height: 40px;
+  width: 50%;
+}
+.inputBox:focus {
+  border-color: #9147ff;
+  background: #fff;
+}
+
+.button {
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 25px;
+  margin-left: 25%;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 5px;
+  line-height: 1.5;
+  padding: 5px 10px;
+  border: 2px solid #dee1e2;
+  background: #dee1e2;
+  display: block;
+  height: 40px;
+  width: 50%;
+}
+
+.button:hover {
+  background-color: #0000001a;
+}

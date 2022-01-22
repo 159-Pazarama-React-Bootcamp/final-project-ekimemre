@@ -5,7 +5,7 @@ const ticketFormSchema = Yup.object({
   lastName: Yup.string().required(),
   age: Yup.number().min(18),
   tc: Yup.string().min(11).max(11).required(),
-  info: Yup.string().max(250).required(),
+  info: Yup.string().max(300).required(),
   address: Yup.string().required(),
   file: Yup.mixed(),
   createdAt: Yup.string(),
@@ -13,4 +13,7 @@ const ticketFormSchema = Yup.object({
 
 export default ticketFormSchema
 
-//birthDate: yup.date().nullable().min(new Date(1900, 0, 1)),
+export const loginFormSchema = Yup.object().shape({
+  email: Yup.string().email().required().label('Email'),
+  password: Yup.string().min(5).required().label('Password'),
+})

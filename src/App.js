@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom'
+import AdminDashboard from './pages/AdminDashboard'
 import AdminPage from './pages/AdminLogin'
 import LandingPage from './pages/LandingPage'
 import TicketInfo from './pages/TicketInfo'
@@ -17,16 +18,10 @@ function App() {
         <Route path="/basvuru" element={<LandingPage />} />
         <Route exact path="/basvuru/:basvuruNo" element={<TicketInfo />} />
         <Route exact path="/admin" element={<AdminPage />} />
+        <Route exact path="/admin/basvurular" element={<AdminDashboard />} />
       </Routes>
     </Router>
   )
 }
 
 export default App
-
-{
-  /* <Route path="/*" element={<Navigate replace to="/basvuru" />} />
-<Route path="/basvuru" element={<LandingPage />} />
-<Route exact path="/basvuru/:basvuruNo" element={<TicketInfo />} />
-<Route exact path="/admin" element={<AdminPage />} /> */
-}

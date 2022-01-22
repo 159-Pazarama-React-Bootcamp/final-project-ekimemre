@@ -1,11 +1,37 @@
-.container {
-  width: 50%;
-  height: 75%;
+@media screen and (max-width: 20rem) and (max-width: 64rem) {
+  .container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .inputBox {
+    width: 90%;
+    margin-left: 1%;
+  }
+  .button {
+    margin-left: 30%;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .container {
+    width: 50%;
+    height: 75%;
+  }
+
+  .inputBox {
+    width: 100%;
+    margin-left: 5%;
+  }
+
+  .button {
+    margin-left: 35%;
+  }
 }
 
 .title {
   font-family: 'JetBrains Mono', monospace;
-  /* font-family: 'Outfit', sans-serif; */
   font-weight: 700;
   font-size: 30px;
   line-height: 45px;
@@ -14,8 +40,8 @@
 }
 
 .inputBox {
-  width: 100%;
-  margin-left: 5%;
+  /* width: 100%; */
+  /* margin-left: 5%; */
   margin-top: 30px;
   padding: 13px;
   margin-bottom: 10px;
@@ -71,8 +97,8 @@ textarea::placeholder {
 
 .button {
   width: 40%;
+  /* margin-left: 35%; */
   margin-top: 20px;
-  margin-left: 35%;
   align-items: center;
   appearance: none;
   background-color: #fcfcfd;
@@ -89,13 +115,7 @@ textarea::placeholder {
   justify-content: center;
   padding-left: 16px;
   padding-right: 16px;
-  text-align: left;
-  text-decoration: none;
   transition: box-shadow 0.15s, transform 0.15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
   will-change: box-shadow, transform;
   font-size: 18px;
 }
