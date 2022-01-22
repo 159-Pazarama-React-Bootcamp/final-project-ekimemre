@@ -17,8 +17,8 @@
 
 @media screen and (min-width: 64rem) {
   .container {
-    width: 40%;
-    height: 75%;
+    width: 50%;
+    height: 80%;
   }
 
   .header {
@@ -66,7 +66,8 @@
   margin-left: 40px;
   margin-top: 15px;
   font-size: 22px;
-  font-weight: 700;
-  max-width: 43.5rem;
+  font-style: italic;
+  font-weight: 500;
+  max-width: 55.5rem;
   overflow-wrap: break-word;
 }

@@ -13,6 +13,7 @@ const TicketItem = (props) => {
     tc,
     isCompleted,
     createdAt,
+    info,
     answerContent,
   } = props
   return (
@@ -25,9 +26,10 @@ const TicketItem = (props) => {
         <p className={styles.item}>Basvuru Numarası: {id}</p>
         <p className={styles.item}>Oluşturulduğu Tarih: {createdAt}</p>
         <p className={styles.item}>T.C Kimik Numarası: {tc}</p>
-        <p className={styles.item}>Ad: {firstName}</p>
-        <p className={styles.item}>Soyad: {lastName}</p>
+        <p className={styles.item}>Ad Soyad: {`${firstName} ${lastName}`}</p>
         <p className={styles.item}>Yaş: {age}</p>
+        <p className={styles.answer}>İçerik: {info}</p>
+        <hr style={{ margin: '15px 35px 0px 35px' }} />
         <div className={styles.answer}>
           Cevap Mesajı:
           <p>
@@ -51,23 +53,8 @@ TicketItem.propTypes = {
   tc: PropTypes.string,
   createdAt: PropTypes.string,
   isCompleted: PropTypes.bool,
+  info: PropTypes.string,
   answerContent: PropTypes.string,
 }
 
 TicketItem.defaultProps = {}
-
-// Line 25-36
-{
-  /* <div className={styles.item}>Basvuru Numarası: {id}</div>
-<hr />
-<div className={styles.item}>Oluşturulduğu Tarih: {createdAt}</div>
-<hr />
-<div className={styles.item}>Ad: {firstName}</div>
-<hr />
-<div className={styles.item}>Soyad: {lastName}</div>
-<hr />
-<div className={styles.item}>Yaş: {age}</div>
-<hr />
-<div className={styles.item}>T.C Kimik Numarası: {tc}</div>
-<hr /> */
-}

@@ -42,6 +42,7 @@ const index = () => {
                   lastName={ticket.lastName}
                   age={ticket.age}
                   tc={ticket.tc}
+                  info={ticket.info}
                   isCompleted={ticket.isCompleted}
                   answerContent={ticket.answerContent}
                   createdAt={ticket.createdAt}

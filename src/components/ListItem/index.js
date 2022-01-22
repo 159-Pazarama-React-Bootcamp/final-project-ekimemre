@@ -3,16 +3,16 @@ import styles from './styles.module.css'
 import PropTypes from 'prop-types'
 
 const ListItem = (props) => {
-  const { isActive, ticketNo, createdDate, fullName, answerContent } = props
+  const { isActive, ticketNo, createdDate, fullName } = props
   return (
     <div className={styles.wrapper}>
-      <p>{isActive}</p>
-      <p>{ticketNo}</p>
-      <p>{createdDate}</p>
-      <p>{fullName}</p>
-      <p>{answerContent}</p>
+      <p>{isActive ? 'Kapalı!' : 'Aktif!'}</p>
+      <p className={styles.item}>{ticketNo}</p>
+      <p className={styles.item}>{createdDate}</p>
+      <p className={styles.item}>{fullName}</p>
+      {/* <p>{answerContent}</p> */}
       <p>
-        <button>Başvuruyu Görüntüle</button>
+        <button className={styles.button}>Başvuruyu Görüntüle</button>
       </p>
     </div>
   )
@@ -25,7 +25,7 @@ ListItem.propTypes = {
   ticketNo: PropTypes.string,
   createdDate: PropTypes.string,
   fullName: PropTypes.string,
-  answerContent: PropTypes.string,
+  // answerContent: PropTypes.string,
 }
 
 // ListItem.defaultProps = {}

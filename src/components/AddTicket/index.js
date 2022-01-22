@@ -32,9 +32,11 @@ const AddTicket = () => {
   }, [basvuruNo])
 
   const onSubmit = async (values) => {
-    const createdTime = new Date().toLocaleString('tr-TR', {
-      timeZone: 'UTC',
-    })
+    const date = new Date()
+    const createdTime = new Intl.DateTimeFormat('tr-TR', {
+      dateStyle: 'short',
+      timeStyle: 'medium',
+    }).format(date)
     await addDoc(ticketsCollectionRef, {
       firstName: values.firstName,
       lastName: values.lastName,

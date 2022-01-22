@@ -34,24 +34,36 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <div>
-        <button onClick={() => signOut(auth)}>Sign Out</button>
+    <>
+      <div className={styles.navbar}>
+        <h2>Başvuru Listesi</h2>
+        <button className={styles.button} onClick={() => signOut(auth)}>
+          Çıkış Yap
+        </button>
       </div>
-      {ticketList.map((item, i) => {
-        return (
-          <div key={i}>
-            <ListItem
-              isActive={item.isCompleted}
-              ticketNo={item.id}
-              createdDate={item.createdAt}
-              fullName={`${item.firstName} ${item.lastName}`}
-              answerContent={item.answerContent}
-            />
-          </div>
-        )
-      })}
-    </div>
+      <div className={styles.container}>
+        <p className={styles.titles}>
+          <p style={{ width: '6%' }}>DURUM</p>
+          <p style={{ width: '27%' }}>BAŞVURU KODU</p>
+          <p style={{ width: '25%' }}>BAŞVURU TARİHİ</p>
+          <p style={{ width: '27%' }}>AD SOYAD</p>
+        </p>
+
+        {ticketList.map((item, i) => {
+          return (
+            <div key={i}>
+              <ListItem
+                isActive={item.isCompleted}
+                ticketNo={item.id}
+                createdDate={item.createdAt}
+                fullName={`${item.firstName} ${item.lastName}`}
+                answerContent={item.answerContent}
+              />
+            </div>
+          )
+        })}
+      </div>
+    </>
   )
 }
 
