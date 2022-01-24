@@ -7,17 +7,21 @@ import { loginWithEmail } from '../../utils/login'
 
 const AdminLogin = () => {
   const navigate = useNavigate()
+
   const handleSubmit = async (values) => {
-    if (values.email === 'kodluyourz' && values.password === 'bootcamp159')
-      navigate('/admin/basvurular') //Kolayca giriş yapabilmek için bir backdoor.
-    try {
-      await loginWithEmail({
-        email: values.email,
-        password: values.password,
-      })
-      navigate('/admin/basvurular')
-    } catch (error) {
-      console.log(error.message)
+    if (values.email === 'kodluyoruz' && values.password === 'bootcamp159') {
+      // console.log(values.email, values.password)
+      navigate('/admin/basvurular') //Kolayca giriş yapabilmek için bir backdoor. Suan calismiyor. dashboard'un mount oldugu anda tekrar kontrol edildigi icin.
+    } else {
+      try {
+        await loginWithEmail({
+          email: values.email,
+          password: values.password,
+        })
+        navigate('/admin/basvurular')
+      } catch (error) {
+        console.log(error.message)
+      }
     }
   }
 
@@ -40,7 +44,6 @@ const AdminLogin = () => {
             name="email"
             type="text"
             onChange={formik.handleChange}
-            value={formik.values.basvuruNo}
             placeholder="Email"
           />
         </div>
@@ -51,7 +54,6 @@ const AdminLogin = () => {
             name="password"
             type="password"
             onChange={formik.handleChange}
-            value={formik.values.basvuruNo}
             placeholder="Şifre"
           />
         </div>
@@ -60,7 +62,6 @@ const AdminLogin = () => {
           Giriş Yap
         </button>
       </div>
-      {/* <div>{formik.values}</divZ */}
     </form>
   )
 }

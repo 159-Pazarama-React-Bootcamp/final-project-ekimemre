@@ -41,11 +41,10 @@ const SearchTicket = () => {
           placeholder="Başvuru Kodu"
         />
         <button type="submit" className={styles.search}>
-          <SearchIcon />
+          <p className={styles.btn}>
+            <SearchIcon />
+          </p>
         </button>
-        {/* <span onClick={formik.hanleSub} className={styles.search}>
-          <SearchIcon />
-        </span> */}
       </div>
     </form>
   )

@@ -3,35 +3,41 @@ import styles from './styles.module.css'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../../firebase'
 import { signOut } from 'firebase/auth'
-import { useSelector, useDispatch } from 'react-redux'
-import { getTickets } from '../../redux/ticket/ticketListSlice'
-import ListItem from '../../components/ListItem'
+import { useSelector } from 'react-redux'
+import ListItem from '../../components/ListTicketItem'
+import Spinner from '../../components/Spinner'
 
 const AdminDashboard = () => {
+  const [isAllOfThem, setIsAllOfThem] = useState(false)
   const navigation = useNavigate()
   const [user, setUser] = useState(null)
-  const dispatch = useDispatch()
   const ticketList = useSelector((state) => state.tickets.item)
-  // console.log(ticketList)
 
   useEffect(() => {
-    dispatch(getTickets())
-
     const unSubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setUser(user)
       } else {
-        navigation('/')
+        navigation('/admin')
       }
     })
+
     return () => {
       unSubscribe()
     }
   }, [])
 
   if (!user) {
-    return <div>Spinner</div>
+    return (
+      <div>
+        <Spinner />
+      </div>
+    )
   }
+
+  const filtered = isAllOfThem
+    ? ticketList
+    : ticketList.filter((item) => item.isCompleted === false)
 
   return (
     <>
@@ -42,14 +48,24 @@ const AdminDashboard = () => {
         </button>
       </div>
       <div className={styles.container}>
-        <p className={styles.titles}>
+        <div className={styles.titles}>
           <p style={{ width: '6%' }}>DURUM</p>
           <p style={{ width: '27%' }}>BAŞVURU KODU</p>
-          <p style={{ width: '25%' }}>BAŞVURU TARİHİ</p>
+          <p style={{ width: '27%' }}>BAŞVURU TARİHİ</p>
           <p style={{ width: '27%' }}>AD SOYAD</p>
-        </p>
+          <p className={styles.switch}>
+            <input
+              type="checkbox"
+              id="switch"
+              value={isAllOfThem}
+              onClick={(e) => setIsAllOfThem(e.target.checked)}
+            />
+            <label htmlFor="switch">Toggle</label>
+            <span>Hepsi</span>
+          </p>
+        </div>
 
-        {ticketList.map((item, i) => {
+        {filtered.map((item, i) => {
           return (
             <div key={i}>
               <ListItem
@@ -57,7 +73,6 @@ const AdminDashboard = () => {
                 ticketNo={item.id}
                 createdDate={item.createdAt}
                 fullName={`${item.firstName} ${item.lastName}`}
-                answerContent={item.answerContent}
               />
             </div>
           )

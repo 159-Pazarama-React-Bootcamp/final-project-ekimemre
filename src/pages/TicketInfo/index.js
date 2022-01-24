@@ -1,36 +1,46 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.css'
 import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import TicketItem from '../../components/TicketItem'
 import NotFound from '../NotFound'
-import AddSuccess from '../../components/AddSuccess'
-import { useSelector, useDispatch } from 'react-redux'
-import { getTickets } from '../../redux/ticket/ticketListSlice'
+import AddSuccessful from '../../pages/AddSuccesful'
+import Spinner from '../../components/Spinner'
 
 const index = () => {
-  const [successAlert, setSuccessAlert] = useState(
-    useSelector((state) => state.search.success)
-  )
   const { basvuruNo } = useParams()
-  const dispatch = useDispatch()
+  const [pageCompleted, setPageCompleted] = useState(false)
 
-  useEffect(() => {
-    dispatch(getTickets())
-  }, [])
-
-  if (successAlert === true) {
-    setTimeout(() => {
-      setSuccessAlert(false)
-    }, 3000)
-  }
-
+  const isSuccess = useSelector((state) => state.search.success)
   const ticketValue = useSelector((state) => state.tickets.item)
   const isThereAny = ticketValue.some((item) => item.id === basvuruNo)
 
+  setTimeout(() => {
+    setPageCompleted(true)
+  }, 2500)
+
+  // const [successAlert, setSuccessAlert] = useState(
+  //   useSelector((state) => state.search.success)
+  // )
+  // if (pageCompleted === true) {
+  //   setTimeout(() => {
+  //     setSuccessAlert(false)
+  //   }, 3500)
+  // } BASARILI KAYIT MODULU GOSTERİLDİKTEN SONRA DETAYLARI GOSTERİR
+
+  if (isSuccess) {
+    return (
+      <div>
+        <AddSuccessful ticketID={basvuruNo} />
+      </div>
+    )
+  }
+
   return (
     <>
-      {successAlert && <AddSuccess />}
-      {isThereAny &&
+      {!pageCompleted && <Spinner />}
+      {pageCompleted &&
+        isThereAny &&
         ticketValue
           .filter((ticket) => ticket.id === basvuruNo)
           .map((ticket, i) => {
@@ -50,7 +60,7 @@ const index = () => {
               </div>
             )
           })}
-      {!isThereAny && <NotFound />}
+      {pageCompleted && !isThereAny && <NotFound />}
     </>
   )
 }

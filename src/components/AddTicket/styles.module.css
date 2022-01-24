@@ -40,8 +40,6 @@
 }
 
 .inputBox {
-  /* width: 100%; */
-  /* margin-left: 5%; */
   margin-top: 30px;
   padding: 13px;
   margin-bottom: 10px;
@@ -56,7 +54,6 @@
 }
 
 .inputBox input {
-  /* font-family: 'JetBrains Mono', monospace; */
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -76,8 +73,7 @@ input::placeholder {
 .container textarea {
   resize: none;
   width: 100%;
-  font-family: 'JetBrains Mono', monospace;
-  /* font-family: 'Montserrat', sans-serif; */
+  font-family: 'Montserrat', sans-serif;
   font-size: 19px;
   border-width: 1px;
   border-color: #cccccc;
@@ -95,10 +91,30 @@ textarea::placeholder {
   color: #94a3b8;
 }
 
+input[type='file']::-webkit-file-upload-button {
+  background: #eee;
+  border: 2px solid #cccccc;
+  border-radius: 4px;
+  color: #000;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  outline: none;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  transition: all 1s ease;
+}
+
+input[type='file']::-webkit-file-upload-button:hover {
+  background: #fff;
+  border: 2px solid #535353;
+  color: #000;
+}
+
 .button {
   width: 40%;
   /* margin-left: 35%; */
-  margin-top: 20px;
+  margin-top: 15px;
   align-items: center;
   appearance: none;
   background-color: #fcfcfd;
@@ -124,4 +140,14 @@ textarea::placeholder {
   box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
     rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
   transform: translateY(-2px);
+}
+
+.error {
+  /* position: absolute; */
+  margin-left: 45px;
+  color: #dc143c;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: bold;
+  height: 0px;
 }

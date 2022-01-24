@@ -68,3 +68,8 @@
   border: none;
   cursor: pointer;
 }
+
+.btn:hover {
+  transform: scale(1.75) translateY(2px);
+  transition: transform 0.4s ease-out, fill 0.5s;
+}

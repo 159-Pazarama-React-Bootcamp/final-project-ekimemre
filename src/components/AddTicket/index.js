@@ -19,8 +19,9 @@ const initialValues = {
 
 const AddTicket = () => {
   const ticketsCollectionRef = collection(db, 'tickets')
-  const navigate = useNavigate()
+  const [baseImage, setBaseImage] = useState('')
   const [basvuruNo, setBasvuruNo] = useState('')
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -31,12 +32,34 @@ const AddTicket = () => {
     }
   }, [basvuruNo])
 
+  const uploadImage = async (e) => {
+    const file = e.target.files[0]
+    const base64 = await convertBase64(file)
+    setBaseImage(base64)
+  }
+
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      /* eslint-disable */
+      const fileReader = new FileReader()
+      /* eslint-disable */
+      fileReader.readAsDataURL(file)
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      }
+      fileReader.onerror = (error) => {
+        reject(error)
+      }
+    })
+  }
+
   const onSubmit = async (values) => {
     const date = new Date()
     const createdTime = new Intl.DateTimeFormat('tr-TR', {
       dateStyle: 'short',
       timeStyle: 'medium',
     }).format(date)
+
     await addDoc(ticketsCollectionRef, {
       firstName: values.firstName,
       lastName: values.lastName,
@@ -47,6 +70,7 @@ const AddTicket = () => {
       createdAt: createdTime,
       isCompleted: false,
       answerContent: '',
+      base64: baseImage,
     })
       .then((docRef) => {
         setBasvuruNo(docRef.id)
@@ -71,8 +95,12 @@ const AddTicket = () => {
           onChange={formik.handleChange}
           value={formik.values.firstName}
           placeholder="Ad"
+          onBlur={formik.handleBlur}
         />
       </div>
+      {formik.errors.firstName && formik.touched.firstName && (
+        <div className={styles.error}>{formik.errors.firstName}</div>
+      )}
 
       <div className={styles.inputBox}>
         <input
@@ -82,8 +110,12 @@ const AddTicket = () => {
           onChange={formik.handleChange}
           value={formik.values.lastName}
           placeholder="Soyad"
+          onBlur={formik.handleBlur}
         />
       </div>
+      {formik.errors.lastName && formik.touched.lastName && (
+        <div className={styles.error}>{formik.errors.lastName}</div>
+      )}
 
       <div className={styles.inputBox}>
         <input
@@ -93,8 +125,12 @@ const AddTicket = () => {
           onChange={formik.handleChange}
           value={formik.values.age}
           placeholder="Yaş"
+          onBlur={formik.handleBlur}
         />
       </div>
+      {formik.errors.age && formik.touched.age && (
+        <div className={styles.error}>{formik.errors.age}</div>
+      )}
 
       <div className={styles.inputBox}>
         <input
@@ -104,8 +140,12 @@ const AddTicket = () => {
           onChange={formik.handleChange}
           value={formik.values.tc}
           placeholder="T.C Kimlik No"
+          onBlur={formik.handleBlur}
         />
       </div>
+      {formik.errors.tc && formik.touched.tc && (
+        <div className={styles.error}>{formik.errors.tc}</div>
+      )}
 
       <div className={styles.inputBox}>
         <input
@@ -115,37 +155,45 @@ const AddTicket = () => {
           onChange={formik.handleChange}
           value={formik.values.address}
           placeholder="Adres Bilgileri"
+          onBlur={formik.handleBlur}
         />
       </div>
+      {formik.errors.address && formik.touched.address && (
+        <div className={styles.error}>{formik.errors.address}</div>
+      )}
 
       <div className={styles.inputBox}>
         <textarea
           cols="30"
-          rows="5"
+          rows="4"
           id="info"
           name="info"
           type="text"
           onChange={formik.handleChange}
           value={formik.values.info}
           placeholder="Başvuru Nedeni"
+          onBlur={formik.handleBlur}
         />
       </div>
+      {formik.errors.info && formik.touched.info && (
+        <div className={styles.error}>{formik.errors.info}</div>
+      )}
 
-      {/* <input
-        id="file"
-        name="file"
-        type="file"
-        accept="image/jpeg, image/png"
-        onChange={(event) => {
-          console.log(event)
-          formik.setFieldValue('file', event.currentTarget.files[0])
-        }}
-      /> */}
+      <div className={styles.inputBox}>
+        <input
+          id="file"
+          name="file"
+          type="file"
+          accept="image/jpeg, image/png"
+          onChange={(e) => {
+            uploadImage(e)
+          }}
+        />
+      </div>
 
       <button type="submit" className={styles.button}>
         Ekle
       </button>
-      {/* <code>{JSON.stringify(formik.values)}</code> */}
     </form>
   )
 }
