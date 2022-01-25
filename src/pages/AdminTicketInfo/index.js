@@ -78,6 +78,10 @@ const index = () => {
             <span>{'Başvurunun İçeriği'}</span>
             {item.info}
           </p>
+          <p className={styles.answer}>
+            <span>{'Cevap'}</span>
+            {item.answerContent}
+          </p>
         </div>
       )
     })
@@ -95,10 +99,11 @@ const index = () => {
       <div className={styles.table}>{filtered}</div>
       <div className={styles.edit}>
         <h4>Başvuru durumunu güncellemek için:</h4>
+
         <p className={styles.editBox}>
-          <input
-            // cols="50"
-            // rows="5"
+          <textarea
+            cols="100"
+            rows="4"
             id="answerContent"
             name="answerContent"
             type="text"
