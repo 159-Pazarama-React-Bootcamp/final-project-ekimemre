@@ -11,13 +11,13 @@ import AdminPage from './pages/AdminLogin'
 import LandingPage from './pages/LandingPage'
 import TicketInfo from './pages/TicketInfo'
 import { useDispatch } from 'react-redux'
-import { getTickets } from './redux/ticket/ticketListSlice'
+import { getTicketsAsync } from './redux/ticket/ticketListSlice'
 
 function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getTickets())
+    dispatch(getTicketsAsync())
   }, [])
 
   return (

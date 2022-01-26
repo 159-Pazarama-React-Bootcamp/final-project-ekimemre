@@ -6,10 +6,12 @@ import { useSelector } from 'react-redux'
 import { auth } from '../../firebase'
 import { db } from '../../firebase'
 import { updateDoc, doc } from 'firebase/firestore'
+import ImageInfo from '../../components/ImageInfo'
 
 const index = () => {
   const [user, setUser] = useState(null)
   const [updateAnswer, setUpdateAnswer] = useState('')
+  const [imgIsVisible, setImgIsVisible] = useState(false)
   const { basvuruNo } = useParams()
   const navigate = useNavigate()
   const ticketList = useSelector((state) => state.tickets.item)
@@ -75,7 +77,10 @@ const index = () => {
             {item.address}
           </p>
           <p className={styles.answer}>
-            <span>{'Başvurunun İçeriği'}</span>
+            <span>
+              {'Başvurunun İçeriği'}{' '}
+              {/* <span onClick={setImgIsVisible(true)}>{'- Ek Dosyalar'}</span> */}
+            </span>
             {item.info}
           </p>
           <p className={styles.answer}>
@@ -85,6 +90,10 @@ const index = () => {
         </div>
       )
     })
+
+  const imgBase64 = stateTicket
+    .filter((item) => item.id === basvuruNo)
+    .map((ticket) => ticket.base64)
 
   return (
     <div className={styles.container}>
@@ -96,10 +105,16 @@ const index = () => {
           {'◀ Başvuru Listesi'}
         </button>
       </div>
+      {imgIsVisible && (
+        <ImageInfo base64={imgBase64} setIsVisible={setImgIsVisible} />
+      )}
       <div className={styles.table}>{filtered}</div>
       <div className={styles.edit}>
-        <h4>Başvuru durumunu güncellemek için:</h4>
+        <span onClick={() => setImgIsVisible(true)} className={styles.imgClick}>
+          Ek Dosyayı görüntülemek için tıklayınız.{' '}
+        </span>
 
+        <h4>Başvuru durumunu güncellemek için:</h4>
         <p className={styles.editBox}>
           <textarea
             cols="100"
@@ -129,6 +144,6 @@ const index = () => {
 
 export default index
 
-{
-  /* <img src={stateTicket[0].base64} className={styles.img} /> */
-}
+// {
+//   <img src={imgBase64} className={styles.img} />
+// }

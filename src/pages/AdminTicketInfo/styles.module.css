@@ -208,6 +208,11 @@
   outline: none;
 }
 
+.imgClick {
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
 .uptadeBtn {
   display: inline-block;
   cursor: pointer;
