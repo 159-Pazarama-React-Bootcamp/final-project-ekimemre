@@ -9,19 +9,15 @@ const AdminLogin = () => {
   const navigate = useNavigate()
 
   const handleSubmit = async (values) => {
-    if (values.email === 'kodluyoruz' && values.password === 'bootcamp159') {
-      // console.log(values.email, values.password)
-      navigate('/admin/basvurular') //Kolayca giriş yapabilmek için bir backdoor. Suan calismiyor. dashboard'un mount oldugu anda tekrar kontrol edildigi icin.
-    } else {
-      try {
-        await loginWithEmail({
-          email: values.email,
-          password: values.password,
-        })
-        navigate('/admin/basvurular')
-      } catch (error) {
-        console.log(error.message)
-      }
+    const newMail = values.email + '@a.com' //Kolayca giriş yapabilmek için konulan bir backdoor
+    try {
+      await loginWithEmail({
+        email: newMail,
+        password: values.password,
+      })
+      navigate('/admin/basvurular')
+    } catch (error) {
+      console.log(error.message)
     }
   }
 
