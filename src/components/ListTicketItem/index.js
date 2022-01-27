@@ -9,7 +9,6 @@ const ListItem = (props) => {
 
   const handleClick = (e) => {
     navigate(`/admin/basvurular/${e.target.id}`)
-    // console.log(e.target.id)
   }
 
   return (
@@ -34,7 +33,4 @@ ListItem.propTypes = {
   ticketNo: PropTypes.string,
   createdDate: PropTypes.string,
   fullName: PropTypes.string,
-  // answerContent: PropTypes.string,
 }
-
-// ListItem.defaultProps = {}
