@@ -3,13 +3,14 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 20rem) and (max-width: 35rem) {
+/* @media screen and (max-width: 20rem) and (max-width: 35rem) {
   .container {
-    width: 100%;
-  }
-}
 
-@media screen and (max-width: 35rem) and (max-width: 64rem) {
+    width: 90%;
+  }
+} */
+
+@media screen and (max-width: 20rem) and (max-width: 64rem) {
   .container {
     width: 80%;
   }

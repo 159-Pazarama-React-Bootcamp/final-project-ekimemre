@@ -41,10 +41,14 @@ const index = () => {
 
   const updateTicket = async (id, field) => {
     const ticketDoc = doc(db, 'tickets', id)
-    const updateStatus = { isCompleted: true }
     const updateField = { answerContent: field }
-    await updateDoc(ticketDoc, updateStatus)
     await updateDoc(ticketDoc, updateField)
+  }
+
+  const updateStatus = async (id, bool) => {
+    const ticketDoc = doc(db, 'tickets', id)
+    const updateStatus = { isCompleted: bool }
+    await updateDoc(ticketDoc, updateStatus)
   }
 
   const filtered = stateTicket
@@ -110,33 +114,54 @@ const index = () => {
       )}
       <div className={styles.table}>{filtered}</div>
       <div className={styles.edit}>
-        <span onClick={() => setImgIsVisible(true)} className={styles.imgClick}>
-          Ek Dosyayı görüntülemek için tıklayınız.{' '}
-        </span>
+        <div className={styles.updateBtns}>
+          <button
+            className={styles.uptadeBtn}
+            onClick={() => updateStatus(basvuruNo, false)}
+          >
+            Beklet
+          </button>
+          <button
+            className={styles.uptadeBtn}
+            onClick={() => updateStatus(basvuruNo, true)}
+          >
+            Tamamla
+          </button>
+        </div>
+        <div>
+          <span
+            onClick={() => setImgIsVisible(true)}
+            className={styles.imgClick}
+          >
+            Ek Dosyayı görüntülemek için tıklayınız.{' '}
+          </span>
 
-        <h4>Başvuru durumunu güncellemek için:</h4>
-        <p className={styles.editBox}>
-          <textarea
-            cols="100"
-            rows="4"
-            id="answerContent"
-            name="answerContent"
-            type="text"
-            onChange={(e) => {
-              setUpdateAnswer(e.target.value)
+          <h4>Cevap içeriğini güncellemek için:</h4>
+          <p className={styles.editBox}>
+            <textarea
+              cols="100"
+              rows="4"
+              id="answerContent"
+              name="answerContent"
+              type="text"
+              onChange={(e) => {
+                setUpdateAnswer(e.target.value)
+              }}
+              value={updateAnswer}
+              placeholder="Cevap İçeriği . . ."
+            />
+          </p>
+        </div>
+        <div id={styles.greenBox}>
+          <button
+            className={styles.uptadeBtn}
+            onClick={() => {
+              updateTicket(basvuruNo, updateAnswer)
             }}
-            value={updateAnswer}
-            placeholder="Cevap İçeriği . . ."
-          />
-        </p>
-        <button
-          className={styles.uptadeBtn}
-          onClick={() => {
-            updateTicket(basvuruNo, updateAnswer)
-          }}
-        >
-          Güncelle
-        </button>
+          >
+            Güncelle
+          </button>
+        </div>
       </div>
     </div>
   )

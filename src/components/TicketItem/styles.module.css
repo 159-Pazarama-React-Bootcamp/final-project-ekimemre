@@ -18,7 +18,8 @@
 @media screen and (min-width: 64rem) {
   .container {
     width: 50%;
-    height: 80%;
+    height: fit-content;
+    min-height: 70%;
   }
 
   .header {
@@ -35,7 +36,7 @@
 }
 
 .container {
-  height: 70%;
+  height: fit-content;
   border-radius: 15px;
   background: #eeeeee;
   font-family: 'Outfit', sans-serif;

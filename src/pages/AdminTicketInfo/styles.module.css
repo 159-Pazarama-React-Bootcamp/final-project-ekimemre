@@ -175,10 +175,13 @@
   border: 5px solid #000;
   border-radius: 20px;
   display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  align-items: center;
+  flex-direction: row;
+  /* flex-direction: column; */
+  justify-content: center;
+  /* align-items: center; */
   position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .editBox {
@@ -188,7 +191,6 @@
   align-items: center;
   padding: 15px 30px;
   border: 2px solid #000;
-
   /* border: 2px solid #e2e8f0; */
   border-radius: 20px;
 }
@@ -211,6 +213,25 @@
 .imgClick {
   margin-bottom: 8px;
   cursor: pointer;
+}
+
+.updateBtns {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin: 40px 0px;
+}
+
+.updateBtns button {
+  margin-top: 15px;
+  width: 50%;
+  min-width: 130px;
+  background-color: #fff;
+  color: #000;
+}
+
+.updateBtns button:hover {
+  background-color: #e2e8f0;
 }
 
 .uptadeBtn {
@@ -238,4 +259,15 @@
 
 .edit h4 {
   margin-bottom: 10px;
+}
+
+#greenBox {
+  display: flex;
+  align-items: center;
+  margin: 0px 25px;
+}
+
+#greenBox button {
+  height: 60px;
+  border-radius: 15px;
 }

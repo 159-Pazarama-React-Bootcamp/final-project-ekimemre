@@ -1,13 +1,33 @@
+@media screen and (max-width: 20rem) and (max-width: 64rem) {
+  .container {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  .loginBox {
+    padding-top: 30px;
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .container {
+    display: flex;
+  }
+  .loginBox {
+    width: 35%;
+    margin-top: 5%;
+    padding-top: 5%;
+  }
+}
 .container {
-  display: flex;
   justify-content: center;
   font-family: 'JetBrains Mono', monospace;
 }
 
 .loginBox {
-  width: 35%;
   margin-top: 5%;
-  padding-top: 5%;
   height: 27rem;
   border-radius: 10px;
   box-shadow: 4px 5px 1px 1px #4e57ef;

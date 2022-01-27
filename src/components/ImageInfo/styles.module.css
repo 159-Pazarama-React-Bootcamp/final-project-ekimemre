@@ -1,5 +1,5 @@
 .container {
-  height: 56%;
+  height: 57.5%;
   width: 80%;
   margin: 20px 10% 0px 10%;
   border: 5px solid #e2e8f0;
@@ -10,6 +10,10 @@
   justify-content: center;
   background-color: #e2e8f0;
   align-items: center;
+}
+
+img {
+  max-width: 1400px;
 }
 
 .close {
