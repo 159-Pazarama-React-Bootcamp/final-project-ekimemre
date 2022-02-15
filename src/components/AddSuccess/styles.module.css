@@ -1,0 +1,13 @@
+.success {
+  width: 23%;
+  top: 20px;
+  left: 1%;
+  padding: 30px;
+  position: absolute;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 3px #ccc;
+  z-index: 1;
+  background-color: rgba(168, 240, 198, 255);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+}

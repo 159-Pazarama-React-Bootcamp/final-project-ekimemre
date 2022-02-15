@@ -1,75 +1,72 @@
-## Bitirme projesi
-### Başvuru / ticket yönetim sistemi
+## Pazarama React Final Project
 
+<hr/>
 
-#### Genel Açıklama
+### Uygulama temelde herkese açık bir başvuru formunun son kullanıcı tarafından doldurulması ve başvuru sonrası verilen takip numarasıyla birlikte başvuru durumu sayfasında incelenmesinden oluşuyor. Ekstra olarak arka tarafta bu başvuruları değerlendirebilecek, düzenleyebilecek bir admin paneli bulunmakta.
 
-Uygulamamız herkese açık bir başvuru formunun son kullanıcı tarafından doldurulması ile başlıyor. 
-Formu dolduran kullanıcıya başvurusunu takip edebilecegi bir kod veriliyor. Kullanıcı başvuru durumu sayfasından bu kod ile başvurusunun çözülüp çözülemedigini kontrol edebiliyor. 
+# Demo
 
-Kullanıcı adı ve şifre ile girilebilen bir ekrandan da yetkili kullanıcılar gelen başvuruları görüntüleyebiliyor cevaplanmamış başvurulara cevap yazıp durumunu çözüldü / iptal edildi / bekliyor vb gibi güncelleyebiliyor. Gerekirse eski kayıtlara ulaşabiliyor.
+[Demo Link](https://ekime-final-project.netlify.app)
 
+<hr/>
 
-#### Detaylı Açıklama
+### Yükleme Adımları
 
+Projenin localde çalıştırılabilmesi için `.env` dosyasını projenin root dizinine eklenmeli ve aşağıdakine benzer şekilde doldurulmalı.
 
-##### Routes / Paths
+```env
+// Your Firebase Config Settings
+REACT_APP_apiKey=
+REACT_APP_authDomain=
+REACT_APP_databaseURL=
+REACT_APP_projectId=
+REACT_APP_storageBucket=
+REACT_APP_messagingSenderId=
+REACT_APP_appId=
+REACT_APP_measurementId=
+```
+
+Ardından npm install ve npm run start ile localhost:3000 portundan kontrol edilebilir.
+
+### Teknolojiler
+
+- React hooks
+- Firebase ( database and auth )
+- Router ( react-router )
+- Redux ( Reduxjs Toolkit )
+- Form management library ( formik )
+- Validation library ( yup )
+- Unit Test ( jest / enzyme )
+- ESLint ve Prettier
+- Deploy - Netlify
+
+### Routes / Paths
 
 - /basvuru-olustur (default)
+
   - Public endpoint.
   - Başvuru formunu herhangi bir kullanıcının doldurmasına imkan verir.
-  - Başvuru formunda [Ad, Soyad, Yaş, TC, Başvuru Nedeni, Adres Bilgisi, Fotograflar/Ekler, Gonder] butonu yer alır. 
-
-- /basvuru-basarili (Basvuru formu doldurulduktan sonra gelen sayfa)
-  - Ekranda bir teşekkür mesajı yer alır ve kullanıcıya başvuru detayları ile birlikte başvuru kodu verilir.
-
-- /basvuru-sorgula
+  - Başvuru formunda [Ad, Soyad, Yaş, TC, Başvuru Nedeni, Adres Bilgisi, Fotograf Ekle, Gönder] butonu yer alır.
   - Ekranda başvuru kodu girilebilen bir input ve sorgula butonu vardır.
 
-- /basvuru/{basvuruNo}
-  - Ekranda başvuru varsa bilgileri, son durumu ve verilen cevap(lar) yer alır.
-  - Başvuru numarası hatalıysa 404(bulunamadı) mesajı çıkar.
+- /basvuru/{basvuruNo} (Basvuru formu doldurulduktan sonra gelen sayfa)
+
+  - Ekranda bir teşekkür mesajı yer alır ve birlikte başvuru kodu verilir.
+
+- /basvuru/{basvuruNo} (Sorgulama sonrası gelen sayfa)
+
+  - Girilen numaraya ait başvuru varsa ekran bilgileri, son durumu ve verilen cevap(lar) yer alır.
+  - Başvuru numarası hatalıysa 404 Not Found hata mesajı çıkar.
 
 - /admin
-  - Ekranda kullanıcı giriş formu vardır. (Rahat test edebilmemiz için u:kodluyoruz, p:bootcamp109 bilgileri ile giriş yapabilmeliyim.)
 
-- /admin/basvuru-listesi
-  - Başarıli giriş sonrası bekleyen (çözülmemiş/cevaplanmamış) başvuruların listesi yer alır ve basit bilgiler sunar. (Başvuru yapan, tarih)
+  - Ekranda kullanıcı giriş formu vardır. (Kolay giriş için u:kodluyoruz, p:bootcamp109)
+
+- /admin/basvurular
+
+  - Başarıli giriş sonrası bekleyen (çözülmemiş/cevaplanmamış) başvuruların listesi yer alır ve basit bilgiler sunar. (Başvuru Kodu, Başvuru Yapan, Tarih)
   - Başvuru listesinde her elemenda başvuruyu görüntüle butonu vardır.
 
 - /admin/basvuru/{basvuruNo}
   - Başvurunun durumu güncellenebilir ve başvuruya cevap yazılabilir.
   - Burada yazılan cevap son kullanıci tarafından basvuru/{basvuruNo} kısmından görüntülenebilmelidir.
-  
-
-
-##### Gereklilikler
-
-- React hooks
-- Router (react-router/ reach router / etc)
-- Redux (Context API'da kullanabilirsiniz)
-- Form management library (react-hook-form / formik / etc)
-- UI library kullanmamalisiniz. 
-- Validation library (yup, joi, etc)
-- Tests (Unit test zorunlu)
-- Uygulamanız kesinlikle bir servise deploy edilmiş olacak ve public link readme içinde yer alacak (netlify, vercel gibi)
-- Open source
-- Eslint
-- Folder structure
-- github commitlerinin gozukmesi gerekmekte. Lutfen bu konuya hassasiyet gosterelim,
- tum sayfalarin tek commitde bulunan repolardan uzak duralim. Puanlara buna gore yapilacaktir.
-
-
-
-##### Dikkat edelim
-- Tüm formlarda gerekli validasyonlar olsun.
-- Back-end yazmak zorunda degilsiniz, back-end olarak firebase ya da mock bir api kullanabilirsiniz.
-- Elinizden gelen en iyi şekilde seperation of concerns'e dikkat ederek yazın.
-- Admin paneline u:kodluyoruz, p:bootcamp109 bilgileri ile giriş yapabilmeliyim.
-- Mümkünse admin paneline bir menü ekleyelim (başvuru listesi, çıkıs gibi işlemleri kapsasın)
-
-##### Bonus (Zorunlu degil, deneysel ozellikler)
-- Typescript 
-- Service worker ile offline render destegi
-- Mobil uyumlulu guzel bir tasarim
-- Kullanilabilir UX

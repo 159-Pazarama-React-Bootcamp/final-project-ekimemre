@@ -1,0 +1,44 @@
+.container {
+  height: 59.5%;
+  width: 80%;
+  margin: 20px 10% 0px 10%;
+  border: 5px solid #e2e8f0;
+  border-radius: 20px;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  background-color: #e2e8f0;
+  align-items: center;
+}
+
+img {
+  max-width: 1400px;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 30px;
+  height: 30px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before,
+.close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}

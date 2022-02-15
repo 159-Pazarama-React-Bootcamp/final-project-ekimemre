@@ -1,0 +1,120 @@
+.container {
+  width: 95%;
+  margin-left: 2.5%;
+  /* text-transform: uppercase; */
+  font-weight: 700;
+  text-align: center;
+  font-size: 17px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.navbar {
+  width: 100%;
+  height: 75px;
+  padding-left: 20px;
+  margin-bottom: 35px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 10px solid #c6cbd3;
+  border-radius: 0px 0px 14px 14px;
+  border-radius: 0px 0px 14px 14px;
+  background: rgb(93, 120, 252);
+  background: linear-gradient(
+    90deg,
+    rgba(93, 120, 252, 1) 0%,
+    rgba(44, 75, 224, 1) 47%,
+    rgba(19, 43, 163, 1) 100%
+  );
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 1px;
+}
+
+.button {
+  margin-right: 1%;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 50px;
+  transition-duration: 0.5s;
+  border: 1px solid #fff;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  padding: 13px 14px 18px;
+  color: #fff;
+  background-color: transparent;
+  height: 42px;
+}
+
+.button:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+.titles {
+  width: 99%;
+  height: 40px;
+  border-radius: 15px;
+  background: #e2e8f0;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  font-size: 19px;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: none;
+  margin-left: 5%;
+  margin-right: 10px;
+  width: 7%;
+}
+
+.switch input[type='checkbox'] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.switch label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 50px;
+  height: 30px;
+  background: #d1cfcf;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+.switch label:after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+.switch input:checked + label {
+  background: rgba(44, 75, 224, 1);
+}
+
+.switch input:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}

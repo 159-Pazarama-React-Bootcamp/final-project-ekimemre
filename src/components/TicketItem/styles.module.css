@@ -1,0 +1,74 @@
+@media screen and (max-width: 20rem) and (max-width: 64rem) {
+  .container {
+    width: 100%;
+  }
+  .header {
+    padding-left: 1%;
+    padding-right: 1%;
+    font-weight: normal;
+    font-size: 12px;
+  }
+
+  .item {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+@media screen and (min-width: 64rem) {
+  .container {
+    width: 50%;
+    height: fit-content;
+    min-height: 70%;
+  }
+
+  .header {
+    padding-left: 5%;
+    padding-right: 5%;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .item {
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
+.container {
+  height: fit-content;
+  border-radius: 15px;
+  background: #eeeeee;
+  font-family: 'Outfit', sans-serif;
+}
+
+.header {
+  background-color: #fff;
+  height: 15%;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 5px solid rgba(3, 40, 253, 0.6);
+}
+
+.item {
+  margin-left: 40px;
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border-bottom: solid 1px #333;
+  border-bottom-width: thin;
+}
+
+.answer {
+  display: block;
+  margin-left: 40px;
+  margin-top: 15px;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 500;
+  max-width: 55.5rem;
+  overflow-wrap: break-word;
+}
